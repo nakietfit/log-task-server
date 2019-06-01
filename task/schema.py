@@ -11,3 +11,22 @@ class Query(graphene.ObjectType):
 
   def resolve_tasks(self, info, **kwargs):
     return Task.objects.all()
+
+class CreateTask(graphene.Mutation):
+  id = graphene.Int()
+  name = graphene.String()
+
+  class Arguments:
+    name = graphene.String()
+
+  def mutate(self, info, name):
+    task = Task(name=name)
+    task.save()
+
+    return CreateTask(
+      id=task.id,
+      name=task.name,
+    )
+
+class Mutation(graphene.ObjectType):
+  create_task = CreateTask.Field()
