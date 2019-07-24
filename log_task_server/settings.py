@@ -80,8 +80,11 @@ WSGI_APPLICATION = 'log_task_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'log-task',
+        'HOST': 'mongodb://admin:aa123123@ds253567.mlab.com:53567/log-task',
+        'USER': 'admin',
+        'PASSWORD': 'aa123123'
     }
 }
 
